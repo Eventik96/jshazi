@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+        <head>
+        <script>
+            
+
+            </script>
+                <% function getNameFromID(ID)
+                {
+                    var name="valami";
+                    customers.forEach(function(customer)
+                            {
+                                if(customer.id.toString()==ID)
+                                {
+                                    name=customer.name;
+                                }
+                            })
+                            return name;
+                }
+        
+                function getItems(array)
+                {
+                    var strArray=[];
+                    var str="<ul>";
+                    
+                    
+                    array.forEach(function(item)
+                    {
+                        products.forEach(function(mez)
+                        {
+                            if(mez.id===item)
+                            {
+                                str+=("<li>"+mez.name+" "+mez.mass+"g</li>");
+                                
+                            }
+                        })
+                        
+                    })
+                    return str+"</ul>";
+                }
+        
+                function isHome(value)
+                {
+                    if(value)
+                    {
+                        return "Háztól";
+                    }
+                    else
+                    {
+                        return "Piac";
+                    }
+                }
+                %>
+                    <script src="../../js/jquery-3.3.1.js"></script>
+                    <link href="../../css/bootstrap.css" rel="stylesheet">
+                    <link href="../../css/bootstrap-theme.css" rel="stylesheet">
+                    <meta charset="utf-16"/>
+                    <style>
+                        .container-div
+                        {
+                            height: 100%;
+                            width: 100%;
+                            color:black !important;
+                        }
+                        table
+                        {
+                            background: white;
+                            border:1px solid grey;
+                            border-radius: 1em;
+                            margin-left: auto;
+                            margin-right: auto;
+                            
+                            font-size: 1.5em;
+                            
+                            box-shadow: 1px 1px 20px grey;
+                        }
+                        td
+                        {
+                            padding:1em;
+                            
+                        }
+        
+                        body{
+                            position: relative;
+                        }
+                        
+                        .vevo
+                        {
+                            border-bottom:1px solid grey !important;
+                            color:black !important;
+                        }
+        
+                        .edit
+                        {
+                            height: 1.3em;
+                            width: 1.3em;
+                            cursor: pointer;
+                        }
+                        .del
+                        {
+                            height: 1.3em;
+                            width:1.3em;
+                            cursor: pointer;
+                        }
+        
+                        .add-button
+                        {
+                            background: rgb(14, 126, 255);
+                            color:white;
+                            border-radius: 0.5em;
+                            font-size: 1em;
+                            padding: 0.6em;
+                            width: 9em;
+                            text-align: center;
+                            cursor: pointer;
+        
+                        }
+        
+                        .fejlec
+                        {
+                            text-transform: uppercase;
+                            color: rgb(100, 103, 106);
+                            font-weight: bold;
+                        }
+        
+                        .hozzaadas
+                        {
+                            display: flex;
+                            flex-direction: row;
+                        }
+        
+                        .input
+                        {
+                            height: 2.6em;
+                            border-radius: 0.5em;
+                            border: 1px solid rgba(147, 147, 147, 0.757);
+                            
+                            padding: 0;
+                            padding-left: 0.5em;
+                            font-size: 1.1em;
+                        }
+                        .cim
+                        {
+                            text-align: center;
+                            margin-left: auto;
+                            margin-right: auto;
+                            font-size: 3em;
+                            font-weight: bold;
+                            font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                            
+                            padding-bottom: 1em;
+                            text-transform: uppercase;
+                            color: wheat;
+                        }
+                        
+                        .deletebtn
+                        {
+                            background: white;
+                            border-radius: 0.5em;
+                            padding-left: 1em;
+                            padding-right: 1em;
+                            padding-top: 0.5em;
+                            padding-bottom: 0.5em;
+                            box-shadow:inset 0px 0px 15px 0px rgb(206, 206, 206);
+                            font-weight: bold;
+                            width: fit-content;
+                            text-align: center;
+                        }
+        
+                    .item
+                    {
+                        display: flex;
+                        flex-direction: row;
+                        margin: 0.5em;
+                    }
+        
+                    select
+                    {
+                        border-radius: 1em;
+                        border:1px solid rgb(200, 200, 200);
+                        padding-left: 1em;
+                        padding-right: 1em;
+                        width: 15em;
+                        text-align: center;
+                        margin-right: 10em;
+                    }
+                    .date
+                    {
+                        padding: 0;
+                        font-weight: bold;
+                        border-radius: 1em;
+                        border:1px solid rgb(193, 193, 193);
+                    }
+                    .darab
+                    {
+                        border:1px solid grey;
+                        font-weight: bold;
+                        border-radius: 0.5em;
+                        
+                    }
+        
+                    .button
+                    {
+                        padding-bottom: 0.5em;
+                        padding-top: 0.5em;
+                        padding-left: 1em;
+                        padding-right: 1em;
+                        background: rgb(0, 119, 255);
+                        color:white;
+                        width: fit-content;
+                        border-radius: 0.5em;
+                        font-weight: bold;
+                        cursor: pointer;
+                    }
+        
+                    .vevo
+                    {
+                        padding: 0.3em;
+                        border:1px solid rgb(193, 193, 193);
+                        border-radius: 0.5em;
+                        font-size: 1.2em;
+                        color: rgb(181, 181, 181);
+                    }
+        
+                    .inputnumber
+                    {
+                        width: min-content !important;
+                    }
+        
+                    .termeklista-container
+                    {
+                        display: flex;
+                        flex-direction: row;
+                        margin-bottom: 0.5em;
+                        margin-left: 1em;
+                        margin-right: 1em;
+                    }
+        
+                    .cont
+                    {
+                        width: 30%;
+                        
+                        margin-right: auto;
+                        margin-left: auto;
+                        padding: 2em;
+                        border-radius: 1em;
+                        box-shadow: 1px 1px 20px gray;
+                       
+        
+                    }
+        
+                    .title
+                    {
+                        font-size: 1.5em;
+                        text-transform: capitalize;
+                        color: gray;
+                        text-align: center;
+                        margin-bottom: 1.5em;
+                    }
+                    .edit-and-add-new
+                    {
+                        background: white;
+                        position: absolute;
+                        margin-left: auto;
+                        margin-right: auto;
+                        top:10em;
+                        display: block;
+                        z-index: 9999;
+                        border-radius: 1em;
+                        box-shadow: 1px 1px 20px grey;
+                        padding: 1em;
+                        width: 30%;
+                        left:35%;
+                        display: block;
+                        cursor: move;
+                    }
+                    </style>
+        
+            </head>
+    <body>
+            
+            <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                      <div class="navbar-header">
+                        <a class="navbar-brand" href="../../home">Méhészet</a>
+                      </div>
+                      <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Eladások</a></li>
+                        <li><a href="../../customers">Vásárlók</a></li>
+                        <li><a href="../../products">Termékek</a></li>
+                      </ul>
+                      <button style="float:right" onclick="window.location.href='../../logout'" class="btn btn-info navbar-btn">Kijelentkezés</button>
+                    </div>
+                  </nav>
+        <div id="editpaneldiv" class="edit-and-add-new">
+                <div class="title">Szerkesztés</div>
+                <form method="POST">
+                    <div class="form-group">
+                        <label for="name">Vevő neve</label>
+                        <input name="name" type="text" class="form-control" value='<%= getNameFromID(thisTrans._customerID) %>' placeholder="Vevő neve"/>
+                    </div>
+                    <div id="termeklista" class="form-group">
+                        <label for="email">Termék hozzáadása</label>
+
+                        <%thisTrans.productsIDList.forEach(function(buyedItem)
+                        {%>
+                            <div class="termeklista-container">
+                                    <select class="form-control" name="termeklista">
+                                        <%products.forEach(function(product){
+                                            function returnSelected(id1,id2)
+                                            {
+                                                if(id1==id2)
+                                                {
+                                                    return "selected";
+                                                }
+                                            }
+                                            %>
+                                            <option <%=returnSelected(buyedItem,product.id) %> value="<%=product._id%>"><%=product.name+' '+product.mass+'g'%></option>
+                                        <%});%>
+                                        
+                                    </select>
+                                    <div class="btn btn-default" onclick="removeProduct(this)">Törlés</div>
+                                </div>
+                        <%});%>
+                       
+
+                       
+                        
+                        
+                    </div>
+                    <div class="termeklista-container">
+                            <div id="addnewitem" class="button">Új hozzáadása</div>
+                        </div>
+                        <div class="form-group">
+                        <label for="place" >Helyszín</label>
+                        <br>
+                        <div class="form-group">
+                            <input type="radio" name="place" value="true" <%if(thisTrans.place){var home="checked"}%><%=home%> > Háztól<br>
+                            <input type="radio" name="place" value="false" <%if(!thisTrans.place){var piac="checked"}%><%=piac%>> Piac<br>
+                            
+                        </div>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="kedvezmeny" >Kedvezmény %</label>
+                        <input name="discount" type="number" value="<%=thisTrans.discount*100 %>" min="0" max="100" step="5" class="form-control inputnumber">
+                    </div>
+    
+                    <div class="form-group">
+                        <input type="submit" id="saveeditandnew" class="btn btn-primary"/>
+                        <a href="../../home" class="btn btn-default">Mégsem</a>
+                    </div>
+    
+                    
+                </form>
+    
+            </div>
+
+            <script>
+                $('#addnewitem').click(function()
+                {
+                    
+                    var select=document.createElement('select');
+                    select.classList.add('form-control');
+                    select.name="termeklista";
+                    
+                    var products=JSON.parse('<%- JSON.stringify(products)%>');
+                    for(var i=0;i<products.length;i++)
+                    {
+                        var option=document.createElement('option');
+                        option.value=products[i]._id;
+                        option.innerHTML=products[i].name+" "+products[i].mass+"g";
+                        select.appendChild(option);
+                        // alert(products[i]._id);
+                    }
+                    var termeklistaContainer=document.createElement('div');
+                    termeklistaContainer.classList.add('termeklista-container');
+                    termeklistaContainer.appendChild(select);
+                    var deleteButton=document.createElement('div');
+                    deleteButton.classList.add("btn");
+                    deleteButton.classList.add("btn-default");
+                    deleteButton.innerHTML="Törlés";
+                    deleteButton.onclick=function(){removeProduct(this);};
+                    document.getElementById('termeklista').appendChild(termeklistaContainer).appendChild(deleteButton);
+                });
+
+                function removeProduct(p)
+                {
+                    var elem=p.parentNode;
+                    p.parentNode.parentNode.removeChild(elem);
+                }
+            </script>
+
+     
+    </body>
+</html>

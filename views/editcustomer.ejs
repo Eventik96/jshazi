@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            
+        <meta charset="utf-16"/>
+        <script src="../../js/jquery-3.3.1.js"></script>
+        <link href="../../css/bootstrap.css" rel="stylesheet">
+    <link href="../../css/bootstrap-theme.css" rel="stylesheet">
+        <style>
+            .container
+            {
+                height: 100%;
+                width: 100%;
+            }
+            .container-div
+            {
+                background: white;
+                border:1px solid grey;
+                border-radius: 1em;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top:3em;
+               
+                
+                box-shadow: 1px 1px 20px grey;
+                width: max-content;
+            }
+            td
+            {
+                padding:1em;
+                
+            }
+            table{
+                font-size: 1.5em;
+            }
+            
+            .vevo
+            {
+                border-bottom:1px solid grey !important;
+            }
+
+            .edit
+            {
+                height: 1.3em;
+                width: 1.3em;
+                cursor: pointer;
+            }
+            .del
+            {
+                height: 1.3em;
+                width:1.3em;
+                cursor: pointer;
+            }
+
+            .add-button
+            {
+                background: rgb(14, 126, 255);
+                color:white;
+                border-radius: 0.5em;
+                font-size: 1.1em;
+                padding: 0.7em;
+                cursor: pointer;
+                text-align: center;
+                
+
+            }
+
+            html{
+                font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            }
+            .fejlec
+            {
+                text-transform: uppercase;
+                color: rgb(100, 103, 106);
+                font-weight: bold;
+            }
+
+            .hozzaadas
+            {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .input
+            {
+                height: 2.6em;
+                border-radius: 0.5em;
+                border: 1px solid rgba(147, 147, 147, 0.757);
+                
+                padding: 0;
+                padding-left: 0.5em;
+                font-size: 1.1em;
+            }
+            .cim
+            {
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+                font-size: 3em;
+                font-weight: bold;
+                font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                
+                padding-bottom: 1em;
+                text-transform: uppercase;
+                color: wheat;
+            }
+            .add-panel
+            {
+                display: flex;
+                flex-direction: row;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .szamlacim
+            {
+                font-style: italic;
+                font-size: 0.9em;
+                vertical-align: middle;
+                color:#333333;
+            }
+            .add-panel-child
+            {
+                margin:1em;
+            }
+
+            #edit-customer
+            {
+                background: white;
+                position: absolute;
+                width: 30%;
+                left:35%;
+                right: 35%;
+                top:25%;
+                box-shadow: 1px 1px 20px rgb(108, 108, 108);
+                border-radius: 1em;
+                z-index: 9999999;
+                padding: 1em;
+                display: block;
+            }
+        </style>
+
+</head>
+    <body>
+            <script src="../js/bootstrap.js"></script>
+                
+            <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                      <div class="navbar-header">
+                        <a class="navbar-brand" href="../../home">Méhészet</a>
+                      </div>
+                      <ul class="nav navbar-nav">
+                        <li ><a href="../../home">Eladások</a></li>
+                        <li class="active" ><a href="../../customers">Vásárlók</a></li>
+                        <li><a href="../../products">Termékek</a></li>
+                      </ul>
+                      <button style="float:right" onclick="window.location.href='../../logout'" class="btn btn-info navbar-btn">Kijelentkezés</button>
+                    </div>
+                  </nav>
+            <div class="cim">Vásárlók</div>
+                
+    </div>
+    <div id="edit-customer" >
+        <div class="title">Szerkesztés</div>
+        <form method="POST" >
+                <div class="form-group">
+                    <label for="name">Vevő neve</label>
+                    <input id="nameEditor" name="nameEditor" type="text" value="<%=thisCustomer.name%>" class="form-control" placeholder="Vevő neve"/>
+                </div>
+                <div class="form-group">
+                    <label for="elerhetoseg">Elérhetőseg</label>
+                    <input id="contactEditor" name="contactEditor" type="text" value="<%=thisCustomer.contact%>" class="form-control" placeholder="Elérhetőseg"/>
+                </div>
+                <div class="form-group">
+                    <label for="szamlacim-edit" >Számlázási cím</label>
+                    <input id="billAddressEditor" name="billAddressEditor" type="text" value="<%=thisCustomer.address%>" placeholder="Számlázási cím"  class="form-control">
+                </div>
+    
+                <div class="form-group">
+                    <input type="submit" name="saveedit" value="Mentés" id="saveeditandnew" class="btn btn-primary"/>
+                    <a href="http://localhost/customers" id="cancelpopup" class="btn btn-default">Mégsem</a>
+                </div>
+        </form>
+    </div>
+
+
+
+
+    
+ 
+   
+    </body>
+</html>

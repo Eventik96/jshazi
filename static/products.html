@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <script src="js/jquery-3.3.1.js"></script>
+            <meta charset="utf-16"/>
+            <link href="css/bootstrap.css" rel="stylesheet">
+            <link href="css/bootstrap-theme.css" rel="stylesheet">
+            <style>
+                .container
+                {
+                    height: 100%;
+                    width: 100%;
+                }
+                table
+                {
+                    background: white;
+                    border:1px solid grey;
+                    border-radius: 1em;
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-right: 1em;
+                    font-size: 1.4em;
+                    padding: 1em;
+                    box-shadow: 1px 1px 20px grey;
+                    
+                }
+                td
+                {
+                    padding:0.5em;
+                    
+                }
+                
+                .vevo
+                {
+                    border-bottom:1px solid grey !important;
+                }
+
+                .edit
+                {
+                    height: 1.6em;
+                    width: 1.6em;
+                    cursor: pointer;
+                }
+                .del
+                {
+                    height: 1.6em;
+                    width:1.6em;
+                    margin-left: 0.5em;
+                    cursor: pointer;
+                }
+
+
+                .fejlec
+                {
+                    text-transform: uppercase;
+                    color: rgb(100, 103, 106);
+                    font-weight: bold;
+                }
+
+                .hozzaadas
+                {
+                    display: flex;
+                    flex-direction: row;
+                }
+
+                .input
+                {
+                    height: 2.6em;
+                    border-radius: 0.5em;
+                    border: 1px solid rgba(147, 147, 147, 0);
+
+                    
+                    padding: 0;
+                    padding-left: 0.5em;
+                    font-size: 1.1em;
+                }
+                .cim
+                {
+                    text-align: center;
+                    margin-left: auto;
+                    margin-right: auto;
+                    font-size: 3em;
+                    font-weight: bold;
+                    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                    padding-top: 1em;
+                    padding-bottom: 1em;
+                    text-transform: uppercase;
+                    color: rgb(96, 96, 96);
+                }
+                
+
+                .mez
+                {
+                    background: #fcf3e3;
+                    border-radius: 1em;
+                    display: flex;
+                    width: min-content;
+                    padding: 1em;
+                    flex-direction: column;
+                    margin: 1em;
+                    box-shadow: 1px 1px 20px 6px #b3b3b3;
+                    
+                }
+
+                .mezkep
+                {
+                    max-height: 400px;
+                    
+                }
+                .szoveg
+                {
+                    display: flex;
+                    flex-direction: column;
+                    width: 30em;
+                }
+
+                .fajta
+                {
+                    font-weight: bold;
+                    font-size: 2em;
+                    margin-bottom: 1em;
+                    
+                }
+
+                
+                
+                
+                body{
+                    background: transparent !important;
+                    position: relative;
+                }
+                .mezcontainer
+                {
+                    display: flex;
+                    flex-direction: row;
+                    margin-right: auto;
+                    margin-left: auto;
+                    width: fit-content;
+                    margin-bottom: 1em;
+                }
+                .add-button
+                {
+                    float: right;
+                    margin-right: 11em;
+                    background: rgb(14, 126, 255);
+                    color:white;
+                    border-radius: 0.5em;
+                    font-size: 1.4em;
+                    padding: 0.7em;
+                    width: 13em;
+                    text-align: center;
+                    font-weight: bold;
+                    cursor:pointer;
+                    
+                    
+                }
+
+                .add-button:hover
+                {
+                    background: rgb(31, 134, 251);
+                }
+                
+                .saveedit
+                {
+                    background-color: rgb(10, 116, 63);
+                    color:white;
+                    border-radius: 0.4em;
+                    margin:0.3em;
+                    padding: 0.5em;
+                    font-weight: bolder;
+                    width: min-content;
+                    display: none;
+                    cursor: pointer;
+                }
+                
+                .saveedit:hover
+                {
+                    background-color: rgb(15, 135, 75);
+                }
+               
+                #add-new-container {
+                    width: 40%;
+                    height: auto;
+                    margin-left: auto;
+                    margin-right: auto;
+                    z-index: 99999;
+                    position: absolute;
+                    left: 30%;
+                    top:30%;
+                    background: wheat;
+                    border-radius: 1em;
+                    box-shadow: 1px 1px 20px grey;
+                    
+                    
+                    padding-left: 5em;
+                    padding-right: 5em;
+                    padding-top:1em;
+                    display: none;
+                    
+                }
+
+
+                table
+                {
+                    border:none !important;
+                }
+
+                .input-s
+                {
+                   
+                        border-radius: 0.5em;
+                        border: 1px solid rgba(147, 147, 147, 0);
+                        padding: 0;
+                        padding-left: 0.5em;
+                        padding-right: 0.5em;
+                        font-size: 1em;
+                    
+                }
+                .save-button-container
+                {
+                    height: 2em;
+                }
+            </style>
+
+
+
+    </head>
+    <body>
+            <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                      <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Méhészet</a>
+                      </div>
+                      <ul class="nav navbar-nav">
+                        <li ><a href="home.html">Eladások</a></li>
+                        <li><a href="customers.html">Vásárlók</a></li>
+                        <li  class="active"  ><a href="#">Termékek</a></li>
+                      </ul>
+                      <button style="float:right" onclick="window.location.href='login.html'" class="btn btn-info navbar-btn">Kijelentkezés</button>
+                    </div>
+                  </nav>
+        <div class="container">
+                
+            <div class="cim">Termékek</div>
+            <div class="mezcontainer">
+                
+                <div class="mez">
+                    <div style="margin-bottom: 1em">
+                            <div style="top:0; display: flex; flex-direction: row; float: right;">
+                                    
+                                    <img class="edit" onclick="edit(0)" src="img/edit.png"/>
+                                    <img class="del" src="img/delete.png"/>
+                                </div>
+                    </div>
+                    
+                        <div style="display: flex; flex-direction: row">
+                            <div class="szoveg">
+                            <div class="fajta">
+                                    Hársméz
+                        </div>
+                        <div class="details">
+                            <table>
+                                <tr> <td> Ár: </td> <td class="price-input input-s" >2900 Ft</td></tr>
+                                <tr> <td> Tömeg: </td> <td class="mass-input input-s">500g</td></tr>
+                                <tr> <td> Csomagolás ideje: </td> <td class="time-input input-s">2018. július 15.</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <img class="mezkep" src="img/hars.png"/>
+                    </div></div>
+                    <div class="save-button-container">
+                        <div class="saveedit"  title="Változtatások mentése" onclick="save(0)">Mentés</div>
+                    </div>
+                        
+                    
+                </div>
+
+                <div class="mez">
+                        <div style="margin-bottom: 1em">
+                                <div style="top:0; display: flex; flex-direction: row; float: right;">
+                                        
+                                        <img class="edit" onclick="edit(1)" src="img/edit.png"/>
+                                        <img class="del" src="img/delete.png"/>
+                                    </div>
+                        </div>
+                        
+                            <div style="display: flex; flex-direction: row">
+                                <div class="szoveg">
+                                <div class="fajta">
+                                        Akácméz
+                            </div>
+                            <div class="details">
+                                <table>
+                                    <tr> <td> Ár: </td> <td class="price-input input-s">2900 Ft</td></tr>
+                                    <tr> <td> Tömeg: </td> <td class="mass-input input-s">1000g</td></tr>
+                                    <tr> <td> Csomagolás ideje: </td > <td class="time-input input-s">2018. július 15.</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <img class="mezkep" src="img/akac.jpg"/>
+                        </div></div>
+                        <div class="save-button-container">
+                            <div class="saveedit"  title="Változtatások mentése" onclick="save(1)">Mentés</div>
+                        </div>
+                        
+                        
+                    </div>    
+            </div>
+
+            <div class="add-mez">
+                    <div class="add-button">
+                            Új termék hozzáadása
+                        </div>
+            </div>
+        </div> 
+        </div>
+
+        
+        <div id="add-new-container">
+            <form>
+                <div class="form-group">
+                    <label>Méz neve</label>
+                    <input class="form-control" id="name" type="text">
+                </div>
+                
+                <div class="form-group">
+                        <label>Ár</label>
+                        <input class="form-control" id="price" type="text">
+                </div>
+                
+                <div class="form-group">
+                        <label>Tömeg</label>
+                        <input class="form-control" id="mass" type="text">
+                </div>
+                <div class="form-group">
+                        <label>Csomagolás ideje</label>
+                        <input class="form-control" id="packing-time" type="text">
+                </div>
+                <div class="form-group">
+                        <label>Kép</label>
+                        <input type="file" id="image" >
+                </div>
+                <div class="form-group">
+                        <input type="submit"  id="savenewelem" class="btn btn-primary" value="Mentés" name="Mentés" >
+                        <div  id="cancel" class="btn btn-default">Mégsem</div>
+                    </div>
+            </form>
+            
+            
+        </div>
+        <script>
+            function edit(P)
+            {
+                
+                document.getElementsByClassName("mass-input")[P].setAttribute("contenteditable",true);
+                document.getElementsByClassName("price-input")[P].setAttribute("contenteditable",true);
+                document.getElementsByClassName("time-input")[P].setAttribute("contenteditable",true);
+                document.getElementsByClassName("mass-input")[P].style.border="1px solid rgba(147, 147, 147, 0.7)";
+                document.getElementsByClassName("price-input")[P].style.border="1px solid rgba(147, 147, 147, 0.7)";
+                document.getElementsByClassName("time-input")[P].style.border="1px solid rgba(147, 147, 147, 0.7)";
+                document.getElementsByClassName("saveedit")[P].style.display="block";
+                
+            }
+
+
+            function save(P)
+            {
+                alert("Mentve! :)");
+                document.getElementsByClassName("mass-input")[P].setAttribute("contenteditable",false);
+                document.getElementsByClassName("price-input")[P].setAttribute("contenteditable",false);
+                document.getElementsByClassName("time-input")[P].setAttribute("contenteditable",false);
+                document.getElementsByClassName("mass-input")[P].style.border="1px solid rgba(147, 147, 147, 0)";
+                document.getElementsByClassName("price-input")[P].style.border="1px solid rgba(147, 147, 147, 0)";
+                document.getElementsByClassName("time-input")[P].style.border="1px solid rgba(147, 147, 147, 0)";
+                document.getElementsByClassName("saveedit")[P].style.display="none";
+            }
+
+            $("#savenewelem").click(function() {
+                alert("Mentve!");
+                $("#add-new-container").css("display","none");
+            });
+            $("#cancel").click(function() {
+                
+                $("#add-new-container").css("display","none");
+            });
+
+            $(".add-button").click(function()
+            {
+                $("#add-new-container").css("display","block");
+            });
+
+        </script>
+        <script src="js/bootstrap.js"></script>
+        
+    </body>
+</html>

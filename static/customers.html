@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <meta charset="utf-16"/>
+            <script src="js/jquery-3.3.1.js"></script>
+            <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.css" rel="stylesheet">
+            <style>
+                .container
+                {
+                    height: 100%;
+                    width: 100%;
+                }
+                .container-div
+                {
+                    background: white;
+                    border:1px solid grey;
+                    border-radius: 1em;
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-top:3em;
+                   
+                    
+                    box-shadow: 1px 1px 20px grey;
+                    width: max-content;
+                }
+                td
+                {
+                    padding:1em;
+                    
+                }
+                table{
+                    font-size: 1.5em;
+                }
+                
+                .vevo
+                {
+                    border-bottom:1px solid grey !important;
+                }
+
+                .edit
+                {
+                    height: 1.3em;
+                    width: 1.3em;
+                    cursor: pointer;
+                }
+                .del
+                {
+                    height: 1.3em;
+                    width:1.3em;
+                    cursor: pointer;
+                }
+
+                .add-button
+                {
+                    background: rgb(14, 126, 255);
+                    color:white;
+                    border-radius: 0.5em;
+                    font-size: 1.1em;
+                    padding: 0.7em;
+                    cursor: pointer;
+                    text-align: center;
+                    
+
+                }
+
+                html{
+                    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                }
+                .fejlec
+                {
+                    text-transform: uppercase;
+                    color: rgb(100, 103, 106);
+                    font-weight: bold;
+                }
+
+                .hozzaadas
+                {
+                    display: flex;
+                    flex-direction: row;
+                }
+
+                .input
+                {
+                    height: 2.6em;
+                    border-radius: 0.5em;
+                    border: 1px solid rgba(147, 147, 147, 0.757);
+                    
+                    padding: 0;
+                    padding-left: 0.5em;
+                    font-size: 1.1em;
+                }
+                .cim
+                {
+                    text-align: center;
+                    margin-left: auto;
+                    margin-right: auto;
+                    font-size: 3em;
+                    font-weight: bold;
+                    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                    padding-top: 1em;
+                    padding-bottom: 1em;
+                    text-transform: uppercase;
+                    color: rgb(96, 96, 96);
+                }
+                .add-panel
+                {
+                    display: flex;
+                    flex-direction: row;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                .add-panel-child
+                {
+                    margin:1em;
+                }
+
+                #edit-customer
+                {
+                    background: white;
+                    position: absolute;
+                    width: 30%;
+                    left:35%;
+                    right: 35%;
+                    top:25%;
+                    box-shadow: 1px 1px 20px rgb(108, 108, 108);
+                    border-radius: 1em;
+                    z-index: 9999999;
+                    padding: 1em;
+                    display: none;
+                }
+            </style>
+
+    </head>
+    <body>
+            <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                      <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Méhészet</a>
+                      </div>
+                      <ul class="nav navbar-nav">
+                        <li ><a href="home.html">Eladások</a></li>
+                        <li class="active" ><a href="#">Vásárlók</a></li>
+                        <li><a href="products.html">Termékek</a></li>
+                      </ul>
+                      <button style="float:right" onclick="window.location.href='login.html'" class="btn btn-info navbar-btn">Kijelentkezés</button>
+                    </div>
+                  </nav>
+            <div class="cim">Vásárlók</div>
+        <div class="container-div">
+            
+            <table id="table" cellspacing="0">
+                <tr class="fejlec">
+                    <td class="fejlec-nev" >Név</td>
+                    <td class="feljelc-elerhetoseg" >Elérhetőseg</td>
+                    <td class="buy-num">Vásárlások száma</td>
+                    <td class7"fejlec-kedvezmeny" >Kedvezmény</td>
+                </tr>
+                <tr class="vevo">
+                    <td class="nev">Kovács Béla</td >
+                        <td class="elerhetoseg" >+36309039570</td>
+                        <td class="num">2</td>
+                        <td class="kedvezmeny">10%</td>
+                        <td ><img class="edit" src="img/edit.png"/></td>
+                        <td ><img class="del" src="img/delete.png"/></td>
+                </tr>
+                <tr class="vevo">
+                    <td class="nev">Nagy Dóra</td>
+                    <td class="elerhetoseg" >+36309039570</td>
+                    <td class="num">1</td><td class="kedvezmeny">20%</td>
+                    <td ><img class="edit" src="img/edit.png"/></td>
+                    <td ><img class="del" src="img/delete.png"/></td>
+                </tr>
+                <tr class="vevo">
+                    <td class="nev">Másik János</td>
+                    <td class="elerhetoseg" >+36304638013</td>
+                    <td class="num">4</td>
+                    <td class="kedvezmeny" style="color: grey"><i>Nincs</i></td>
+                    <td ><img class="edit" src="img/edit.png"/></td>
+                    <td ><img class="del" src="img/delete.png"/></td>
+                </tr>
+                
+            </table>
+            
+                 <div class="add-panel">
+                    <input id="nameinput" class="input add-panel-child" type="text" placeholder="Név"/>
+                    <input id="elerhetoseginput" class="input add-panel-child" type="text" placeholder="Elérhetőseg"/>
+                    <input id="kedvezmenyinput" class="input add-panel-child" type="number" value="0" placeholder="Kedvezmény"/>
+                    <div id="addnewcustomer" class="add-button add-panel-child">
+                    Új vevő hozzáadása</div>
+                </div>
+
+                
+                
+        </div>
+
+
+
+
+        <div id="edit-customer" >
+            <div class="title">Új hozzáadása</div>
+            <form>
+                    <div class="form-group">
+                        <label for="name">Vevő neve</label>
+                        <input type="text" class="form-control" placeholder="Vevő neve"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="elerhetoseg">Elérhetőseg</label>
+                        <input type="text" class="form-control" placeholder="Elérhetőseg"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="kedvezmeny" >Kedvezmény</label>
+                        <input type="number" value="0" min="0" max="100" step="5" class="form-control inputnumber">
+                    </div>
+    
+                    <div class="form-group">
+                        <div id="saveeditandnew" class="btn btn-primary">Mentés</div>
+                        <div id="cancelpopup" class="btn btn-default">Mégsem</a>
+                    </div>
+            </form>
+        </div>
+        <script src="js/bootstrap.js"></script>
+        <script>
+            $("#addnewcustomer").click(
+                function()
+                {
+                    var tr=document.createElement("tr");
+                    $(tr).addClass("vevo");
+                    var td1=document.createElement("td");
+                    var td2=document.createElement("td");
+                    var td3=document.createElement("td");
+                    var td4=document.createElement("td");
+                    var td5=document.createElement("td");
+                    var td6=document.createElement("td");
+                    $(td1).html(document.getElementById("nameinput").value);
+                    $(td2).html(document.getElementById("elerhetoseginput").value);
+                    $(td3).html("0");
+                    $(td4).html(document.getElementById("kedvezmenyinput").value+"%");
+                    var img1=document.createElement("img");
+                    var img2=document.createElement("img");
+                    $(img1).addClass("edit").attr("src","img/edit.png");
+                    $(img2).addClass("del").attr("src","img/delete.png");
+                    $(td5).append(img1);
+                    $(td6).append(img2);
+
+
+                    $(tr).append(td1,td2,td3,td4,td5,td6);
+                    $("#table").append(tr);
+                    
+                }
+            );
+        
+            
+            $(".edit").click(function(){
+                $("#edit-customer").css("display","block");
+            });
+
+
+            $("#saveeditandnew").click(function(){
+                    alert("Módosítások mentve!");
+                    $("#edit-customer").css("display","none");
+                }
+                );
+
+                $("#cancelpopup").click(function(){
+                    $("#edit-customer").css("display","none");
+                }
+                );
+
+        </script>
+    </body>
+</html>

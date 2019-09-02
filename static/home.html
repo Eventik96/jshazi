@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <script src="js/jquery-3.3.1.js"></script>
+            <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.css" rel="stylesheet">
+            <meta charset="utf-16"/>
+            <style>
+                .container-div
+                {
+                    height: 100%;
+                    width: 100%;
+                    color:black !important;
+                }
+                table
+                {
+                    background: white;
+                    border:1px solid grey;
+                    border-radius: 1em;
+                    margin-left: auto;
+                    margin-right: auto;
+                    
+                    font-size: 1.5em;
+                    
+                    box-shadow: 1px 1px 20px grey;
+                }
+                td
+                {
+                    padding:1em;
+                    
+                }
+
+                body{
+                    position: relative;
+                }
+                
+                .vevo
+                {
+                    border-bottom:1px solid grey !important;
+                    color:black !important;
+                }
+
+                .edit
+                {
+                    height: 1.3em;
+                    width: 1.3em;
+                    cursor: pointer;
+                }
+                .del
+                {
+                    height: 1.3em;
+                    width:1.3em;
+                    cursor: pointer;
+                }
+
+                .add-button
+                {
+                    background: rgb(14, 126, 255);
+                    color:white;
+                    border-radius: 0.5em;
+                    font-size: 1em;
+                    padding: 0.6em;
+                    width: 9em;
+                    text-align: center;
+                    cursor: pointer;
+
+                }
+
+                .fejlec
+                {
+                    text-transform: uppercase;
+                    color: rgb(100, 103, 106);
+                    font-weight: bold;
+                }
+
+                .hozzaadas
+                {
+                    display: flex;
+                    flex-direction: row;
+                }
+
+                .input
+                {
+                    height: 2.6em;
+                    border-radius: 0.5em;
+                    border: 1px solid rgba(147, 147, 147, 0.757);
+                    
+                    padding: 0;
+                    padding-left: 0.5em;
+                    font-size: 1.1em;
+                }
+                .cim
+                {
+                    text-align: center;
+                    margin-left: auto;
+                    margin-right: auto;
+                    font-size: 3em;
+                    font-weight: bold;
+                    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                    padding-top: 1em;
+                    padding-bottom: 1em;
+                    text-transform: uppercase;
+                    color: rgb(96, 96, 96);
+                }
+                
+                .deletebtn
+                {
+                    background: white;
+                    border-radius: 0.5em;
+                    padding-left: 1em;
+                    padding-right: 1em;
+                    padding-top: 0.5em;
+                    padding-bottom: 0.5em;
+                    box-shadow:inset 0px 0px 15px 0px rgb(206, 206, 206);
+                    font-weight: bold;
+                    width: fit-content;
+                    text-align: center;
+                }
+
+            .item
+            {
+                display: flex;
+                flex-direction: row;
+                margin: 0.5em;
+            }
+
+            select
+            {
+                border-radius: 1em;
+                border:1px solid rgb(200, 200, 200);
+                padding-left: 1em;
+                padding-right: 1em;
+                width: 15em;
+                text-align: center;
+                margin-right: 10em;
+            }
+            .date
+            {
+                padding: 0;
+                font-weight: bold;
+                border-radius: 1em;
+                border:1px solid rgb(193, 193, 193);
+            }
+            .darab
+            {
+                border:1px solid grey;
+                font-weight: bold;
+                border-radius: 0.5em;
+                
+            }
+
+            .button
+            {
+                padding-bottom: 0.5em;
+                padding-top: 0.5em;
+                padding-left: 1em;
+                padding-right: 1em;
+                background: rgb(0, 119, 255);
+                color:white;
+                width: fit-content;
+                border-radius: 0.5em;
+                font-weight: bold;
+            }
+
+            .vevo
+            {
+                padding: 0.3em;
+                border:1px solid rgb(193, 193, 193);
+                border-radius: 0.5em;
+                font-size: 1.2em;
+                color: rgb(181, 181, 181);
+            }
+
+            .inputnumber
+            {
+                width: min-content !important;
+            }
+
+            .termeklista-container
+            {
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 0.5em;
+                margin-left: 1em;
+                margin-right: 1em;
+            }
+
+            .cont
+            {
+                width: 30%;
+                
+                margin-right: auto;
+                margin-left: auto;
+                padding: 2em;
+                border-radius: 1em;
+                box-shadow: 1px 1px 20px gray;
+               
+
+            }
+
+            .title
+            {
+                font-size: 1.5em;
+                text-transform: capitalize;
+                color: gray;
+                text-align: center;
+                margin-bottom: 1.5em;
+            }
+            .edit-and-add-new
+            {
+                background: white;
+                position: absolute;
+                margin-left: auto;
+                margin-right: auto;
+                top:30%;
+                display: block;
+                z-index: 9999;
+                border-radius: 1em;
+                box-shadow: 1px 1px 20px grey;
+                padding: 1em;
+                width: 30%;
+                left:35%;
+                display: none;
+            }
+            </style>
+
+    </head>
+    <body>
+            <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                      <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Méhészet</a>
+                      </div>
+                      <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Eladások</a></li>
+                        <li><a href="customers.html">Vásárlók</a></li>
+                        <li><a href="products.html">Termékek</a></li>
+                      </ul>
+                      <button style="float:right" onclick="window.location.href='login.html'" class="btn btn-info navbar-btn">Kijelentkezés</button>
+                    </div>
+                  </nav>
+        <div class="container-div">
+            <div class="cim">Eladások</div>
+            <table cellspacing="0">
+                <tr class="fejlec">
+                    <td class="fejlec-nev" >Vevő Neve</td>
+                    <td class="feljelc-elerhetoseg" >Megvásárolt termékek</td>
+                    <td class="buy-num">Dátum</td>
+                    <td class7"fejlec-kedvezmeny" >Kedvezmény</td>
+                    <td class7"fejlec-place" >Vásárlás helye</td>
+                </tr>
+                <tr class="vevo">
+                    <td class="nev">Kovács Béla</td >
+                        <td class="elerhetoseg" >• 2db Akácméz 500g <br>• 1db Hársméz 1000g</td>
+                        <td class="num">2019. február 14.</td>
+                        <td class="kedvezmeny">10%</td>
+                        <td class="place">Háztól</td>
+                        <td ><img class="edit" src="img/edit.png"/></td>
+                        <td ><img class="del" src="img/delete.png"/></td>
+                </tr>
+                <tr class="vevo">
+                    <td class="nev">Nagy Dóra</td >
+                        <td class="elerhetoseg" >• 1db Vegyes Virágméz 250g</td>
+                        <td class="num">2019. január 4.</td>
+                        <td class="kedvezmeny">100%</td>
+                        <td class="place">Háztól</td>
+                        <td ><img class="edit" src="img/edit.png"/></td>
+                        <td ><img class="del" src="img/delete.png"/></td>
+                </tr>
+                <tr class="vevo">
+                    <td class="nev">Másik János</td >
+                        <td class="elerhetoseg" >• 1db Akácméz 500g</td>
+                        <td class="num">2019. január 20.</td>
+                        <td class="kedvezmeny"><i style="color:grey">Nincs</i></td>
+                        <td class="place">Piac</td>
+                        <td ><img class="edit" src="img/edit.png"/></td>
+                        <td ><img class="del" src="img/delete.png"/></td>
+                </tr>
+                <tr class="add-panel">
+                    
+                    <td><div class="add-button" style="float:right">
+                    Hozzáad
+                </div></td>
+                </tr>
+            </table>
+            
+        </div>
+
+        <div class="edit-and-add-new">
+                <div class="title">Új hozzáadása</div>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Vevő neve</label>
+                        <input type="text" class="form-control" placeholder="Vevő neve"/>
+                    </div>
+                    <div id="termeklista" class="form-group">
+                        <label for="email">Termék hozzáadása</label>
+                        <div class="termeklista-container">
+                            <select class="form-control" name="termeklista">
+                                <option selected value="Akácméz">Akácméz 1000g</option>
+                                <option value="Hársméz">Hársméz 1000g</option>
+                                <option value="Hársméz">Hársméz 500g</option>
+                            </select>
+                            <input class="form-control inputnumber" type="number" min="1" max="100" step="1" value="1">
+                            <div class="btn btn-default" >Törlés</div>
+                        </div>
+                        <div class="termeklista-container" >
+                            <select class="form-control" name="termeklista">
+                                <option  value="Akácméz">Akácméz 1000g</option>
+                                <option selected value="Hársméz">Hársméz 1000g</option>
+                                <option value="Hársméz">Hársméz 500g</option>
+                            </select>
+                            <input class="form-control inputnumber" type="number" min="1" max="100" step="1" value="1">
+                            <div class="btn btn-default" >Törlés</div>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="termeklista-container">
+                            <div id="addnewitem" class="button">Új hozzáadása</div>
+                        </div>
+                        <div class="form-group">
+                        <label for="place" >Helyszín</label>
+                        <br>
+                        <form class="form-control">
+                            <input type="radio" name="place" value="Háztól" checked> Háztól<br>
+                            <input type="radio" name="place" value="Piac"> Piac<br>
+                            
+                          </form>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="kedvezmeny" >Kedvezmény</label>
+                        <input type="number" value="0" min="0" max="100" step="5" class="form-control inputnumber">
+                    </div>
+    
+                    <div class="form-group">
+                        <div id="saveeditandnew" class="btn btn-primary">Mentés</div>
+                        <div id="cancelpopup" class="btn btn-default">Mégsem</a>
+                    </div>
+    
+                    
+                </form>
+    
+            </div>
+
+
+
+            
+            <script src="js/bootstrap.js"></script>
+            <script>
+            $(".add-button").click(function()
+                {
+                    $(".edit-and-add-new").css("display","block");
+                });
+                $(".edit").click(function()
+                {
+                    $(".edit-and-add-new").css("display","block");
+                    $(".title").html("Szerkesztés");
+                });
+
+
+                $("#saveeditandnew").click(function(){
+                    $(".edit-and-add-new").css("display","none");
+                }
+                );
+
+                $("#cancelpopup").click(function(){
+                    $(".edit-and-add-new").css("display","none");
+                }
+                );
+            </script>
+    </body>
+</html>
